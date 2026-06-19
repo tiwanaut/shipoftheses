@@ -19,7 +19,6 @@
       font-family:"Geist Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
       font-size:17px; line-height:1.62; -webkit-font-smoothing:antialiased;
     }
-    body.modal-open{overflow:hidden;}
     .page{max-width:var(--measure); margin:0 auto; padding:0 28px 120px;}
 
     .site{padding:64px 0 36px;}
@@ -39,12 +38,12 @@
     .post__title{font-size:30px; line-height:1.2; font-weight:700; letter-spacing:-0.01em; margin:0;}
     .post__date{margin:10px 0 0; font-size:14px;}
 
-    /* Key takeaways heading + Full memo button */
-    .takeaways{display:flex; align-items:center; justify-content:space-between; gap:16px;
-      margin-top:38px;}
+    /* Key takeaways heading + Full memo link (opens in a new tab) */
+    .takeaways{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-top:38px;}
     .takeaways h2{font-size:18px; font-weight:700; letter-spacing:-0.01em; margin:0;}
-    .memo-btn{font:inherit; font-size:13px; border:1px solid var(--ink); background:transparent;
-      color:var(--ink); padding:6px 13px; border-radius:6px; cursor:pointer; white-space:nowrap;
+    .memo-btn{display:inline-block; font:inherit; font-size:13px; text-decoration:none;
+      border:1px solid var(--ink); background:transparent; color:var(--ink);
+      padding:6px 13px; border-radius:6px; white-space:nowrap;
       transition:background 0.25s var(--ease), color 0.25s var(--ease);}
     .memo-btn:hover, .memo-btn:focus-visible{background:var(--ink); color:var(--bg); outline:none;}
 
@@ -57,21 +56,7 @@
       transition:background-size 0.35s var(--ease);}
     .back:hover, .back:focus-visible{background-size:100% 1px;}
 
-    /* Full-screen memo overlay (PDF opens here, on top of the page) */
-    .overlay{position:fixed; inset:0; background:rgba(0,0,0,0.6);
-      display:none; align-items:center; justify-content:center; padding:24px; z-index:50;}
-    .overlay.open{display:flex;}
-    .modal{background:var(--bg); width:min(920px,100%); height:min(86vh,100%);
-      border:1px solid var(--ink); display:flex; flex-direction:column;}
-    .modal__bar{display:flex; align-items:center; gap:14px; padding:10px 14px;
-      border-bottom:1px solid var(--ink); font-size:13px;}
-    .modal__name{overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
-    .modal__open{margin-left:auto; font-size:13px; color:var(--ink);}
-    .modal__close{border:0; background:transparent; font:inherit; font-size:20px; line-height:1;
-      cursor:pointer; color:var(--ink); padding:0 4px;}
-    .modal__frame{flex:1; width:100%; border:0;}
-
-    a:focus-visible, .modal__close:focus-visible{outline:2px solid var(--ink); outline-offset:3px;}
+    a:focus-visible{outline:2px solid var(--ink); outline-offset:3px;}
 
     @media (prefers-reduced-motion:reduce){ *{transition-duration:0.001ms !important;} }
     @media (max-width:640px){
@@ -80,7 +65,6 @@
       .site{padding:40px 0 28px;}
       .post__title{font-size:25px;}
       .feed__link{gap:14px;}
-      .modal{height:100%; width:100%;}
     }
   </style>
 </head>
@@ -96,7 +80,7 @@
 
       <div class="takeaways">
         <h2>Key takeaways</h2>
-        <button class="memo-btn" type="button" id="memoBtn" data-memo="../memos/jack-and-jill-memo.html" aria-haspopup="dialog">Full memo</button>
+        <a class="memo-btn" href="../memos/jack-and-jill-memo.html" target="_blank" rel="noopener">Full memo</a>
       </div>
       <ul class="bullets">
         <li>Placeholder takeaway one &mdash; the single most important point about Jack &amp; Jill.</li>
@@ -107,35 +91,6 @@
 
       <a class="back" href="../index.html">Back to all posts</a>
     </article>
-
-    <div class="overlay" id="memoOverlay" role="dialog" aria-modal="true" aria-label="Full memo">
-      <div class="modal">
-        <div class="modal__bar">
-          <span class="modal__name">Full memo</span>
-          <a class="modal__open" href="../memos/jack-and-jill-memo.html" target="_blank" rel="noopener">Open in new tab</a>
-          <button class="modal__close" type="button" id="memoClose" aria-label="Close memo">&times;</button>
-        </div>
-        <iframe class="modal__frame" id="memoFrame" title="Jack &amp; Jill full memo" src="about:blank"></iframe>
-      </div>
-    </div>
   </div>
-  <script>
-  (function(){
-    var overlay=document.getElementById('memoOverlay');
-    var frame=document.getElementById('memoFrame');
-    var btn=document.getElementById('memoBtn');
-    var src=btn.getAttribute('data-memo');
-    function open(){
-      if(frame.getAttribute('src')!==src){frame.setAttribute('src',src);}
-      overlay.classList.add('open'); document.body.classList.add('modal-open');
-      document.getElementById('memoClose').focus();
-    }
-    function close(){ overlay.classList.remove('open'); document.body.classList.remove('modal-open'); }
-    btn.addEventListener('click',open);
-    document.getElementById('memoClose').addEventListener('click',close);
-    overlay.addEventListener('click',function(e){ if(e.target===overlay) close(); });
-    document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
-  })();
-  </script>
 </body>
 </html>
