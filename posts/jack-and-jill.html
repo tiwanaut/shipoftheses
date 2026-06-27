@@ -4,87 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jack &amp; Jill &mdash; Ship of Theses</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;700&display=swap" rel="stylesheet" />
-  <style>
-    :root{
-      --bg:#FFFFFF; --ink:#000000;
-      --measure:720px; --ease:cubic-bezier(0.22,1,0.36,1);
-    }
-    *{box-sizing:border-box;}
-    html{-webkit-text-size-adjust:100%;}
-    body{
-      margin:0; background:var(--bg); color:var(--ink);
-      font-family:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-      font-size:18px; line-height:1.6; -webkit-font-smoothing:antialiased;
-    }
-    body.modal-open{overflow:hidden;}
-    .page{max-width:var(--measure); margin:0 auto; padding:0 28px 120px;}
-
-    .site{padding:64px 0 36px;}
-    .site__name{font-size:20px; font-weight:700; letter-spacing:-0.01em;
-      text-decoration:none; color:var(--ink);}
-
-    .feed{margin:0; padding:0; list-style:none;}
-    .feed__link{display:flex; align-items:baseline; justify-content:space-between; gap:24px;
-      padding:7px 0; text-decoration:none; color:var(--ink);}
-    .feed__title{font-size:18px; font-weight:500;
-      background-image:linear-gradient(var(--ink),var(--ink));
-      background-size:0% 1px; background-position:0 100%; background-repeat:no-repeat;
-      transition:background-size 0.35s var(--ease);}
-    .feed__link:hover .feed__title, .feed__link:focus-visible .feed__title{background-size:100% 1px;}
-    .feed__date{flex:0 0 auto; font-size:15px; white-space:nowrap; color:var(--ink);}
-
-    .post__title{font-size:32px; line-height:1.18; font-weight:700; letter-spacing:-0.02em; margin:0;}
-    .post__date{margin:10px 0 0; font-size:15px; color:var(--ink);}
-
-    /* Key takeaways heading + Full memo button (opens overlay) */
-    .takeaways{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-top:38px;}
-    .takeaways h2{font-size:19px; font-weight:700; letter-spacing:-0.01em; margin:0;}
-    .memo-btn{display:inline-block; font:inherit; font-size:14px; cursor:pointer;
-      border:1px solid var(--ink); background:transparent; color:var(--ink);
-      padding:6px 13px; border-radius:6px; white-space:nowrap;
-      transition:background 0.25s var(--ease), color 0.25s var(--ease);}
-    .memo-btn:hover, .memo-btn:focus-visible{background:var(--ink); color:var(--bg); outline:none;}
-
-    .bullets{margin:16px 0 0; padding-left:20px;}
-    .bullets li{margin:0 0 9px; line-height:1.55; font-size:17px;}
-
-    .back{display:inline-block; margin-top:44px; font-size:15px; text-decoration:none; color:var(--ink);
-      background-image:linear-gradient(var(--ink),var(--ink));
-      background-size:0% 1px; background-position:0 100%; background-repeat:no-repeat;
-      transition:background-size 0.35s var(--ease);}
-    .back:hover, .back:focus-visible{background-size:100% 1px;}
-
-    /* Full memo overlay */
-    .overlay{position:fixed; inset:0; background:rgba(0,0,0,0.6);
-      display:none; align-items:center; justify-content:center; padding:24px; z-index:50;}
-    .overlay.open{display:flex;}
-    .modal{background:var(--bg); width:min(920px,100%); height:min(86vh,100%);
-      border:1px solid var(--ink); display:flex; flex-direction:column;}
-    .modal__bar{display:flex; align-items:center; gap:14px; padding:10px 14px;
-      border-bottom:1px solid var(--ink); font-size:14px;}
-    .modal__name{font-weight:500;}
-    .modal__close{margin-left:auto; border:0; background:transparent; font:inherit; font-size:22px;
-      line-height:1; cursor:pointer; color:var(--ink); padding:0 4px;}
-    .modal__frame{flex:1; width:100%; border:0;}
-
-    a:focus-visible, .modal__close:focus-visible{outline:2px solid var(--ink); outline-offset:3px;}
-
-    @media (prefers-reduced-motion:reduce){ *{transition-duration:0.001ms !important;} }
-    @media (max-width:640px){
-      body{font-size:17px;}
-      .page{padding:0 20px 104px;}
-      .site{padding:52px 0 34px;}
-      .post__title{font-size:26px;}
-      .takeaways{margin-top:34px;}
-      .feed__link{gap:14px; padding:12px 0;}
-      .bullets li{margin:0 0 12px;}
-      .back{margin-top:48px;}
-      .modal{height:100%; width:100%;}
-    }
-  </style>
+  <link rel="stylesheet" href="../styles.css" />
 </head>
 <body>
   <div class="page">
@@ -96,47 +16,36 @@
       <h1 class="post__title">Jack &amp; Jill</h1>
       <p class="post__date">1 July 2026</p>
 
-      <div class="takeaways">
-        <h2>Key takeaways</h2>
-        <button class="memo-btn" type="button" id="memoBtn" data-memo="../memos/jack-and-jill-memo.html" aria-haspopup="dialog">Full memo</button>
-      </div>
-      <ul class="bullets">
-        <li>Placeholder takeaway one &mdash; the single most important point about Jack &amp; Jill.</li>
-        <li>Placeholder takeaway two &mdash; the move that mattered and what it cost.</li>
-        <li>Placeholder takeaway three &mdash; the number that tells the story.</li>
-        <li>Placeholder takeaway four &mdash; what generalises, and what doesn't.</li>
-      </ul>
+      <details class="drop" open>
+        <summary>tl;dr</summary>
+        <div class="drop__body">
+          <ul class="bullets">
+            <li>Placeholder takeaway one &mdash; the single most important point about Jack &amp; Jill.</li>
+            <li>Placeholder takeaway two &mdash; the move that mattered and what it cost.</li>
+            <li>Placeholder takeaway three &mdash; the number that tells the story.</li>
+            <li>Placeholder takeaway four &mdash; what generalises, and what doesn't.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="drop">
+        <summary>full memo</summary>
+        <div class="drop__body">
+          <p>This is a placeholder memo. Replace it with the full write-up.</p>
+          <h2>Background</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Set out where Jack &amp; Jill started and what made the company worth a closer look.</p>
+          <h2>What happened</h2>
+          <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+          <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Dummy copy for the detail that does not fit in the bullet points.</p>
+          <h2>So what</h2>
+          <p>Close the memo with the part that generalises and the part that does not. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+      </details>
 
       <a class="back" href="../index.html">Back to all posts</a>
     </article>
 
-    <div class="overlay" id="memoOverlay" role="dialog" aria-modal="true" aria-label="Full memo">
-      <div class="modal">
-        <div class="modal__bar">
-          <span class="modal__name">Full memo</span>
-          <button class="modal__close" type="button" id="memoClose" aria-label="Close memo">&times;</button>
-        </div>
-        <iframe class="modal__frame" id="memoFrame" title="Jack &amp; Jill full memo" src="about:blank"></iframe>
-      </div>
-    </div>
+    <footer class="foot">&copy; Tiwa Adejuyigbe, 2026</footer>
   </div>
-  <script>
-  (function(){
-    var overlay=document.getElementById('memoOverlay');
-    var frame=document.getElementById('memoFrame');
-    var btn=document.getElementById('memoBtn');
-    var src=btn.getAttribute('data-memo');
-    function open(){
-      if(frame.getAttribute('src')!==src){frame.setAttribute('src',src);}
-      overlay.classList.add('open'); document.body.classList.add('modal-open');
-      document.getElementById('memoClose').focus();
-    }
-    function close(){ overlay.classList.remove('open'); document.body.classList.remove('modal-open'); }
-    btn.addEventListener('click',open);
-    document.getElementById('memoClose').addEventListener('click',close);
-    overlay.addEventListener('click',function(e){ if(e.target===overlay) close(); });
-    document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
-  })();
-  </script>
 </body>
 </html>
