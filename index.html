@@ -6,7 +6,7 @@
   <title>Ship of Theses</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
     :root{
       --bg:#FFFFFF; --ink:#000000;
@@ -16,55 +16,73 @@
     html{-webkit-text-size-adjust:100%;}
     body{
       margin:0; background:var(--bg); color:var(--ink);
-      font-family:"Geist Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
-      font-size:17px; line-height:1.62; -webkit-font-smoothing:antialiased;
+      font-family:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      font-size:18px; line-height:1.6; -webkit-font-smoothing:antialiased;
     }
+    body.modal-open{overflow:hidden;}
     .page{max-width:var(--measure); margin:0 auto; padding:0 28px 120px;}
 
     .site{padding:64px 0 36px;}
-    .site__name{font-size:19px; font-weight:700; letter-spacing:-0.01em;
+    .site__name{font-size:20px; font-weight:700; letter-spacing:-0.01em;
       text-decoration:none; color:var(--ink);}
 
     .feed{margin:0; padding:0; list-style:none;}
     .feed__link{display:flex; align-items:baseline; justify-content:space-between; gap:24px;
       padding:7px 0; text-decoration:none; color:var(--ink);}
-    .feed__title{font-size:17px; font-weight:500;
+    .feed__title{font-size:18px; font-weight:500;
       background-image:linear-gradient(var(--ink),var(--ink));
       background-size:0% 1px; background-position:0 100%; background-repeat:no-repeat;
       transition:background-size 0.35s var(--ease);}
     .feed__link:hover .feed__title, .feed__link:focus-visible .feed__title{background-size:100% 1px;}
-    .feed__date{flex:0 0 auto; font-size:14px; white-space:nowrap;}
+    .feed__date{flex:0 0 auto; font-size:15px; white-space:nowrap; color:var(--ink);}
 
-    .post__title{font-size:30px; line-height:1.2; font-weight:700; letter-spacing:-0.01em; margin:0;}
-    .post__date{margin:10px 0 0; font-size:14px;}
+    .post__title{font-size:32px; line-height:1.18; font-weight:700; letter-spacing:-0.02em; margin:0;}
+    .post__date{margin:10px 0 0; font-size:15px; color:var(--ink);}
 
-    /* Key takeaways heading + Full memo link (opens in a new tab) */
+    /* Key takeaways heading + Full memo button (opens overlay) */
     .takeaways{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-top:38px;}
-    .takeaways h2{font-size:18px; font-weight:700; letter-spacing:-0.01em; margin:0;}
-    .memo-btn{display:inline-block; font:inherit; font-size:13px; text-decoration:none;
+    .takeaways h2{font-size:19px; font-weight:700; letter-spacing:-0.01em; margin:0;}
+    .memo-btn{display:inline-block; font:inherit; font-size:14px; cursor:pointer;
       border:1px solid var(--ink); background:transparent; color:var(--ink);
       padding:6px 13px; border-radius:6px; white-space:nowrap;
       transition:background 0.25s var(--ease), color 0.25s var(--ease);}
     .memo-btn:hover, .memo-btn:focus-visible{background:var(--ink); color:var(--bg); outline:none;}
 
     .bullets{margin:16px 0 0; padding-left:20px;}
-    .bullets li{margin:0 0 9px; line-height:1.55; font-size:16px;}
+    .bullets li{margin:0 0 9px; line-height:1.55; font-size:17px;}
 
-    .back{display:inline-block; margin-top:44px; font-size:14px; text-decoration:none; color:var(--ink);
+    .back{display:inline-block; margin-top:44px; font-size:15px; text-decoration:none; color:var(--ink);
       background-image:linear-gradient(var(--ink),var(--ink));
       background-size:0% 1px; background-position:0 100%; background-repeat:no-repeat;
       transition:background-size 0.35s var(--ease);}
     .back:hover, .back:focus-visible{background-size:100% 1px;}
 
-    a:focus-visible{outline:2px solid var(--ink); outline-offset:3px;}
+    /* Full memo overlay */
+    .overlay{position:fixed; inset:0; background:rgba(0,0,0,0.6);
+      display:none; align-items:center; justify-content:center; padding:24px; z-index:50;}
+    .overlay.open{display:flex;}
+    .modal{background:var(--bg); width:min(920px,100%); height:min(86vh,100%);
+      border:1px solid var(--ink); display:flex; flex-direction:column;}
+    .modal__bar{display:flex; align-items:center; gap:14px; padding:10px 14px;
+      border-bottom:1px solid var(--ink); font-size:14px;}
+    .modal__name{font-weight:500;}
+    .modal__close{margin-left:auto; border:0; background:transparent; font:inherit; font-size:22px;
+      line-height:1; cursor:pointer; color:var(--ink); padding:0 4px;}
+    .modal__frame{flex:1; width:100%; border:0;}
+
+    a:focus-visible, .modal__close:focus-visible{outline:2px solid var(--ink); outline-offset:3px;}
 
     @media (prefers-reduced-motion:reduce){ *{transition-duration:0.001ms !important;} }
     @media (max-width:640px){
-      body{font-size:16px;}
-      .page{padding:0 20px 80px;}
-      .site{padding:40px 0 28px;}
-      .post__title{font-size:25px;}
-      .feed__link{gap:14px;}
+      body{font-size:17px;}
+      .page{padding:0 20px 104px;}
+      .site{padding:52px 0 34px;}
+      .post__title{font-size:26px;}
+      .takeaways{margin-top:34px;}
+      .feed__link{gap:14px; padding:12px 0;}
+      .bullets li{margin:0 0 12px;}
+      .back{margin-top:48px;}
+      .modal{height:100%; width:100%;}
     }
   </style>
 </head>
