@@ -1,7 +1,5 @@
 # Ship of Theses
 
-A simple static blog of company case studies. No build step, no framework.
-
 ## Repo layout
 
     index.html        the home page — the list of posts
