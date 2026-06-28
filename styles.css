@@ -18,12 +18,12 @@ body{
 .feed{margin:0; padding:0; list-style:none;}
 .feed__link{display:flex; align-items:baseline; justify-content:space-between; gap:24px;
   padding:7px 0; text-decoration:none; color:var(--ink);}
-.feed__title{font-size:16px; font-weight:500;
+.feed__title{font-size:18px; font-weight:500;
   background-image:linear-gradient(var(--ink),var(--ink));
   background-size:0% 1px; background-position:0 100%; background-repeat:no-repeat;
   transition:background-size 0.35s var(--ease);}
 .feed__link:hover .feed__title, .feed__link:focus-visible .feed__title{background-size:100% 1px;}
-.feed__date{flex:0 0 auto; font-size:15px; white-space:nowrap; color:var(--ink);}
+.feed__date{flex:0 0 auto; font-size:17px; white-space:nowrap; color:var(--ink);}
 /* post */
 .post__title{font-size:32px; line-height:1.18; font-weight:700; letter-spacing:-0.02em; margin:0;}
 .post__date{margin:10px 0 30px; font-size:15px; color:var(--ink);}
