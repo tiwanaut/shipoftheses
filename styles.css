@@ -53,10 +53,7 @@ body{
 .foot{margin-top:56px; font-size:14px; color:var(--ink);}
 a:focus-visible, summary:focus-visible{outline:2px solid var(--ink); outline-offset:3px;}
 /* subscribe (Loops form) */
-.sub{border-top:1px solid var(--ink); border-bottom:1px solid var(--ink);
-  margin:40px 0 0; padding:22px 0;}
-.sub__title{font-size:19px; font-weight:700; letter-spacing:-0.01em; margin:0 0 4px;}
-.sub__note{font-size:15px; margin:0 0 14px;}
+.sub{border-bottom:1px solid var(--ink); margin:40px 0 0; padding:0 0 22px;}
 .newsletter-form{display:flex; gap:10px; flex-wrap:wrap; align-items:center;}
 .newsletter-form-input{flex:1 1 240px; min-width:0; font:inherit; font-size:16px;
   color:var(--ink); background:var(--bg); border:1px solid var(--ink); border-radius:0;
