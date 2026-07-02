@@ -11,7 +11,6 @@
     <header class="site">
       <a class="site__name" href="index.html">Ship of Theses</a>
     </header>
-
     <!-- POSTS: newest first. To add one, copy a line below and point it at your new file. -->
     <ul class="feed">
       <li>
@@ -27,6 +26,123 @@
         </a>
       </li>
     </ul>
+
+    <!-- Subscribe (Loops) -->
+    <section class="sub">
+      <p class="sub__title">Subscribe</p>
+      <p class="sub__note">A short email when a new thesis goes up, with a link to read it here.</p>
+      <div class="newsletter-form-container">
+        <form class="newsletter-form" action="https://app.loops.so/api/newsletter-form/cmlhpzxre0m0q0ixs7v6iqon8" method="POST">
+          <input class="newsletter-form-input" type="email" name="newsletter-form-input" placeholder="you@email.com" required />
+          <button type="submit" class="newsletter-form-button">Subscribe</button>
+          <button type="button" class="newsletter-loading-button" style="display:none;">Please wait...</button>
+        </form>
+        <div class="newsletter-success" style="display:none;">
+          <p class="newsletter-success-message">Thanks, you're on the list.</p>
+        </div>
+        <div class="newsletter-error" style="display:none;">
+          <p class="newsletter-error-message">Something went wrong, please try again.</p>
+        </div>
+        <button class="newsletter-back-button" type="button" style="display:none;">&larr; Back</button>
+      </div>
+      <script>
+      function submitHandler(event) {
+        event.preventDefault();
+        var container = event.target.parentNode;
+        var form = container.querySelector(".newsletter-form");
+        var formInput = container.querySelector(".newsletter-form-input");
+        var success = container.querySelector(".newsletter-success");
+        var errorContainer = container.querySelector(".newsletter-error");
+        var errorMessage = container.querySelector(".newsletter-error-message");
+        var backButton = container.querySelector(".newsletter-back-button");
+        var submitButton = container.querySelector(".newsletter-form-button");
+        var loadingButton = container.querySelector(".newsletter-loading-button");
+
+        const rateLimit = () => {
+          errorContainer.style.display = "flex";
+          errorMessage.innerText = "Too many signups, please try again in a little while";
+          submitButton.style.display = "none";
+          formInput.style.display = "none";
+          backButton.style.display = "block";
+        }
+
+        var time = new Date();
+        var timestamp = time.valueOf();
+        var previousTimestamp = localStorage.getItem("loops-form-timestamp");
+
+        if (previousTimestamp && Number(previousTimestamp) + 60000 > timestamp) {
+          rateLimit();
+          return;
+        }
+        localStorage.setItem("loops-form-timestamp", timestamp);
+
+        submitButton.style.display = "none";
+        loadingButton.style.display = "flex";
+
+        var formBody = "userGroup=&mailingLists=&email="
+          + encodeURIComponent(formInput.value);
+
+        fetch(event.target.action, {
+          method: "POST",
+          body: formBody,
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        })
+          .then((res) => [res.ok, res.json(), res])
+          .then(([ok, dataPromise, res]) => {
+            if (ok) {
+              success.style.display = "flex";
+              form.reset();
+            } else {
+              dataPromise.then(data => {
+                errorContainer.style.display = "flex";
+                errorMessage.innerText = data.message ? data.message : res.statusText;
+              });
+            }
+          })
+          .catch(error => {
+            if (error.message === "Failed to fetch") {
+              rateLimit();
+              return;
+            }
+            errorContainer.style.display = "flex";
+            if (error.message) errorMessage.innerText = error.message;
+            localStorage.setItem("loops-form-timestamp", '');
+          })
+          .finally(() => {
+            formInput.style.display = "none";
+            loadingButton.style.display = "none";
+            backButton.style.display = "block";
+          });
+      }
+      function resetFormHandler(event) {
+        var container = event.target.parentNode;
+        var formInput = container.querySelector(".newsletter-form-input");
+        var success = container.querySelector(".newsletter-success");
+        var errorContainer = container.querySelector(".newsletter-error");
+        var errorMessage = container.querySelector(".newsletter-error-message");
+        var backButton = container.querySelector(".newsletter-back-button");
+        var submitButton = container.querySelector(".newsletter-form-button");
+
+        success.style.display = "none";
+        errorContainer.style.display = "none";
+        errorMessage.innerText = "Something went wrong, please try again.";
+        backButton.style.display = "none";
+        formInput.style.display = "flex";
+        submitButton.style.display = "flex";
+      }
+
+      var formContainers = document.getElementsByClassName("newsletter-form-container");
+      for (var i = 0; i < formContainers.length; i++) {
+        var formContainer = formContainers[i];
+        if (formContainer.classList.contains('newsletter-handlers-added')) continue;
+        formContainer.querySelector(".newsletter-form").addEventListener("submit", submitHandler);
+        formContainer.querySelector(".newsletter-back-button").addEventListener("click", resetFormHandler);
+        formContainer.classList.add("newsletter-handlers-added");
+      }
+      </script>
+    </section>
 
     <footer class="foot">&copy; Tiwa Adejuyigbe, 2026</footer>
   </div>
