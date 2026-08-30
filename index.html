@@ -13,27 +13,7 @@
   <meta property="og:description" content="Memos on companies I find interesting." />
   <meta property="og:url" content="https://shipoftheses.vercel.app/" />
 
-  <!-- =====================================================================
-       THE POST LIST — this is the only thing you edit to publish a memo.
-
-       Add ONE object per memo. Order does not matter, the page sorts itself.
-
-         no     the permanent memo number. Never reuse it, never renumber
-                the older ones. The next memo is simply the next number.
-         title  what shows on the index and in search
-         slug   the file in posts/ without the ".html"
-         date   "YYYY-MM" — drives the date column and the month scrubber
-
-       That's it. Then copy posts/template.html to posts/<slug>.html.
-       ===================================================================== -->
-  <script>
-    const POSTS = [
-      { no: 4, title: "Oura",          slug: "oura",           date: "2026-08" },
-      { no: 3, title: "Monzo",         slug: "monzo",          date: "2026-07" },
-      { no: 2, title: "Sweetgreen",    slug: "sweetgreen",     date: "2026-06" },
-      { no: 1, title: "Jack &amp; Jill",   slug: "jack-and-jill",  date: "2026-06" }
-    ];
-  </script>
+  <script src="/posts.js"></script>
 </head>
 <body>
   <div class="page">
@@ -68,12 +48,10 @@
       </ul>
     </noscript>
 
-    <ul class="scrub" data-scrub aria-label="Jump to month"></ul>
-
     <footer class="foot">&copy; Tiwa Adejuyigbe, 2026</footer>
   </div>
 
-  <!-- builds the index and the scrubber from POSTS above -->
+  <!-- builds the index from the POSTS list in posts.js -->
   <script>
   (function () {
     "use strict";
@@ -89,12 +67,10 @@
     });
 
     var index = document.getElementById("index");
-    var seenYear = {}, seenMonth = {}, monthCount = {}, order = [], html = "";
+    var seenYear = {}, html = "";
 
     posts.forEach(function (post) {
       var year = post.date.split("-")[0];
-      monthCount[post.date] = (monthCount[post.date] || 0) + 1;
-      if (!seenMonth[post.date]) { seenMonth[post.date] = true; order.push(post.date); }
 
       if (!seenYear[year]) {
         seenYear[year] = true;
@@ -105,15 +81,8 @@
           '<ul class="feed" data-list>';
       }
 
-      // the first row of a month carries the anchor the scrubber jumps to
-      var anchor = "";
-      if (seenMonth[post.date] === true) {
-        seenMonth[post.date] = "anchored";
-        anchor = ' data-month="' + post.date + '"';
-      }
-
       html +=
-        '<li class="feed__row" data-row data-title="' + post.title.replace(/&amp;/g, "&") + '"' + anchor + ">" +
+        '<li class="feed__row" data-row data-title="' + post.title + '">' +
           '<a class="feed__link" href="/posts/' + post.slug + '">' +
             '<span class="feed__no">#' + ("00" + post.no).slice(-3) + "</span>" +
             '<span class="feed__title">' + post.title + "</span>" +
@@ -125,16 +94,6 @@
     if (html) html += "</ul></section>";
     index.innerHTML = html;
 
-    // the rail: one month per row, tick length scaled by how many memos it holds
-    var scrub = document.querySelector("[data-scrub]");
-    scrub.innerHTML = order.map(function (key) {
-      var width = Math.min(52, 12 + monthCount[key] * 10);
-      return "<li>" +
-        '<button class="scrub__btn" type="button" data-scrub-key="' + key + '">' +
-          '<span class="scrub__label">' + label(key) + "</span>" +
-          '<span class="scrub__tickwrap"><span class="scrub__tick" style="width:' + width + 'px"></span></span>' +
-        "</button></li>";
-    }).join("");
   })();
   </script>
 

@@ -2,9 +2,8 @@
    Ship of Theses — shared behaviour.
    Nothing here needs editing when you add a post.
      1. search      — expands the masthead icon into a field
-     2. scrubber    — the month rail pinned to the right edge
-     3. player      — the audio player on post pages
-     4. share       — copies the post URL to the clipboard
+     2. player      — the audio player on memo pages
+     3. share       — copies the memo URL to the clipboard
    ============================================================ */
 (function () {
   "use strict";
@@ -74,52 +73,7 @@
     }
   }
 
-  /* --- 2. scrubber ----------------------------------------- */
-  var scrub = document.querySelector("[data-scrub]");
-  if (scrub) {
-    var buttons = Array.prototype.slice.call(scrub.querySelectorAll("[data-scrub-key]"));
-    var anchors = {};
-    buttons.forEach(function (btn) {
-      var key = btn.getAttribute("data-scrub-key");
-      anchors[key] = document.querySelector('[data-month="' + key + '"]');
-      btn.addEventListener("click", function () {
-        var target = anchors[key];
-        if (!target) return;
-        var top = target.getBoundingClientRect().top + window.pageYOffset - 140;
-        window.scrollTo({ top: top < 0 ? 0 : top, behavior: "smooth" });
-      });
-    });
-
-    var mark = function () {
-      var line = window.innerHeight * 0.35;
-      var max = document.documentElement.scrollHeight - window.innerHeight;
-      var current = buttons[0];
-      // at the top of the page — or on a page too short to scroll — the first
-      // month is the active one, whatever sits above the trigger line
-      if (window.pageYOffset > 0 && max > 0) {
-        buttons.forEach(function (btn) {
-          var target = anchors[btn.getAttribute("data-scrub-key")];
-          if (target && target.getBoundingClientRect().top <= line) current = btn;
-        });
-        if (window.pageYOffset >= max - 2) current = buttons[buttons.length - 1];
-      }
-      buttons.forEach(function (btn) {
-        btn.classList.toggle("is-active", btn === current);
-      });
-    };
-
-    var queued = false;
-    var onScroll = function () {
-      if (queued) return;
-      queued = true;
-      window.requestAnimationFrame(function () { queued = false; mark(); });
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    mark();
-  }
-
-  /* --- 3. audio player ------------------------------------- */
+  /* --- 2. audio player ------------------------------------- */
   var RATES = [1, 1.25, 1.5, 1.75, 2];
   var clock = function (secs) {
     if (!isFinite(secs)) return "--:--";
@@ -219,7 +173,7 @@
     }
   });
 
-  /* --- 4. share -------------------------------------------
+  /* --- 3. share -------------------------------------------
      Copies the canonical URL rather than the address bar, so sharing from
      a Vercel preview deployment still hands out the real one. */
   Array.prototype.forEach.call(document.querySelectorAll("[data-share]"), function (btn) {
