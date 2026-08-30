@@ -4,22 +4,47 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sweetgreen &mdash; Ship of Theses</title>
-  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="canonical" href="https://shipoftheses.vercel.app/posts/sweetgreen" />
+  <meta property="og:site_name" content="Ship of Theses" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Sweetgreen" />
+  <meta property="og:url" content="https://shipoftheses.vercel.app/posts/sweetgreen" />
 </head>
 <body>
   <div class="page">
-    <header class="site">
-      <a class="site__name" href="../index.html">Ship of Theses</a>
+    <header class="mast">
+      <a class="mast__name" href="/">Ship of Theses</a>
+      <nav class="nav">
+        <span class="search" data-search data-search-target="/">
+          <button class="search__toggle" type="button" data-search-toggle
+                  aria-expanded="false" aria-label="Search memos">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                 stroke-linecap="round" aria-hidden="true">
+              <circle cx="10.5" cy="10.5" r="6.5"></circle><path d="M15.5 15.5 21 21"></path>
+            </svg>
+          </button>
+          <input class="search__field" type="search" data-search-field
+                 placeholder="Search memos" aria-label="Search memos" autocomplete="off" />
+        </span>
+        <a class="nav__link" href="/faqs">FAQs</a>
+        <a class="nav__cta" href="/submit" aria-label="Submit a company"><span class="nav__full">Submit a company</span><span class="nav__short" aria-hidden="true">Submit</span></a>
+      </nav>
     </header>
 
-    <article>
+    <article class="post">
       <h1 class="post__title">Sweetgreen</h1>
-      <p class="post__date">June 2026</p>
+      <div class="meta">
+        <span>Jun 2026</span>
+        <span class="meta__sep" aria-hidden="true">|</span>
+        <span>#002</span>
+        <span class="meta__sep" aria-hidden="true">|</span>
+        <button class="meta__share" type="button" data-share>Share memo</button>
+      </div>
 
-      <details class="drop" open>
-        <summary>TL;DR</summary>
-        <div class="drop__body">
-          <ul class="bullets">
+      <p class="label">TL;DR</p>
+      <div class="prose">
+          <ul>
             <li>Sweetgreen (NYSE: SG) is a US fast-casual salad chain of roughly 285 restaurants. Despite having no international presence, the company boasts a ~$1bn market cap. Yet, after its first full year of adjusted EBITDA profitability in FY2024, it has gone sharply into reverse, with a FY2025 net loss of about $134m and a same-store sales decline of 12.8% in the first quarter of 2026, its steepest since the 2021 IPO.</li>
             <li>On the surface, its decline in the U.S. negates any argument for international expansion. A successful turnaround returns the company to a maturing home market, whereas expansion opens a new growth vector. If so, London is the natural first market, where the premium health-led lunch occasion exists at close to Manhattan intensity and is becoming increasingly embedded in the city&rsquo;s lunchtime culture. The food-to-go category is <a href="https://www.lumina-intelligence.com/blog/uk-food-to-go-market-size-growth-and-share-statistics-2026/">forecast at &pound;24.9bn in 2026 and growing faster than the wider eating-out sector</a>, with quality now overtaking value as the leading purchase driver.</li>
             <li>For context: the US brands that entered organically have stayed small&mdash;such as Chipotle reaching only around 19 sites since 2010&mdash;while those that entered through a local operating partner have scaled fast. Wingstop UK, for example, has reached <a href="https://sixthstreet.com/investment_announce/lemon-pepper-holdings-the-master-franchisee-for-wingstop-in-the-uk-and-ireland-announces-investment-from-sixth-street-to-support-future-growth/">57 sites and a &pound;150m revenue run-rate under a master franchisee</a> before <a href="https://www.cityam.com/wingstop-and-popeyes-serve-up-major-uk-expansion-plans/">selling for more than &pound;400m. Conversely, Popeyes UK grew from &pound;58m to &gt;&pound;118m revenue in a year</a>.</li>
@@ -27,12 +52,10 @@
             <li>In theory, Sweetgreen would be buying operating proof, a validated copy of its own concept familiar with London&rsquo;s operational mechanics, including site pipeline and landlord relationships. Notably, the decisions to expand and/or merge sit squarely with the founders, who through a <a href="https://contracts.justia.com/companies/sweetgreen-inc-14147/contract/227355/">dual-class structure hold a majority of the voting power and control over any change of control</a>, so the move depends on founder conviction rather than on a board that might insist on domestic focus.</li>
             <li>On inferred figures I would expect an enterprise value of roughly &pound;60m&ndash;&pound;120m (~$80m&ndash;$160m), in line with the 2.7x revenue that Wingstop UK fetched, structured predominantly in Sweetgreen stock with founder rollover and an earn-out, with the cash-versus-equity split outlined below.</li>
           </ul>
-        </div>
-      </details>
+      </div>
 
-      <details class="drop">
-        <summary>Memo</summary>
-        <div class="drop__body">
+      <p class="label">Memo</p>
+      <div class="prose">
 
           <h2>The Company</h2>
 
@@ -60,7 +83,7 @@
           <p>From these case studies, we can deduce that perhaps US fast-casual scales when a capable local team owns the build and stalls when the parent tries to run it from abroad. This is a speculative position, and one that underpins the thesis that follows.</p>
           <p>For Sweetgreen, the greenfield route can be set aside on the precedent and the constraints together. Building a London estate site by site would require Sweetgreen to assemble, from a standing start, a UK property function, a local supply chain, a local labour model and a local brand, in a market with high rents, an ambiguous cost base. Doing so is the riskiest, most capital-intensive and slowest route. Above all, it asks a management team running a domestic turnaround to learn a foreign market in real time.</p>
           <p>That said, I still reject the franchise route. There&rsquo;s a very valid question about why Sweetgreen should not simply license its brand to a UK operator given the model&rsquo;s success. I argue against this for a few reasons:</p>
-          <ul class="bullets">
+          <ul>
             <li>Sweetgreen has never franchised and operates a wholly company-owned estate, so it would have to construct a franchising capability, a disclosure and support organisation and a packaged set of unit economics before it could even begin, which is itself a multi-year distraction.</li>
             <li>The model that worked for Wingstop worked because the imported brand already carried pull, a globally recognised name that a British consumer would cross the street for, whereas Sweetgreen has close to no recognition in the UK, so franchising the name imports the build cost without importing the demand.</li>
             <li>And even where it works, the franchise route still requires an estate to be built from zero, which is the very thing that takes six or seven years. Acquiring an established local operator solves all three problems at once, since it needs no franchising apparatus, it substitutes a locally loved brand for the absent imported one, and it delivers an estate and a pipeline on day one.</li>
@@ -75,14 +98,14 @@
           <p>The three potential targets are credible London-based counterparties with differences in product, geography, capital structure and ambition. The field is these three rather than the wider cohort because the alternatives fit less well. Tossed, for example, has chosen a franchise-led model and a lower price point that sits below the premium occasion Sweetgreen owns; the remaining names are either sub-scale or off-format.</p>
 
           <h3>Farmer J</h3>
-          <ul class="bullets">
+          <ul>
             <li>Farmer J is the largest and best-capitalised, and for that reason the least available. <a href="https://www.restaurantonline.co.uk/Article/2024/02/22/Jonathan-Recanati-on-his-Farmer-J-restaurant-group-in-London/">Founded in 2014, with its first site in 2016</a>, by Jonathan Recanati, a former Deutsche Bank analyst who runs the business with his wife Ali.</li>
             <li>It sells a build-your-own Field Tray priced around &pound;10-15, turned over about &pound;18m in its 2023 accounts, runs site-level EBITDA in the high teens, and serves up to 1,500 customers a day at its larger sites, on a broader and hotter Mediterranean menu than a salad bar.</li>
             <li>It has raised the most [funding] of the three, with <a href="https://tracxn.com/d/companies/farmer-j/__omsLn9j7eHng17_tMLvC54SvY8EOvi80SVOU2Z47x8Y">total funding of around $31m</a> across three rounds and Sweetgreen listed among its closest comparables. <a href="https://www.beringea.com/news/in-the-news/beringea-uk-makes-further-investment-into-farmer-j">Its October 2025 round of &pound;17.5m</a> was raised explicitly to fund a New York debut alongside further London openings. The U.S. consideration converts Farmer J from a potential target into a direct competitor on Sweetgreen&rsquo;s home turf. The most ambitious and best-funded operator in the cohort provides a possible signal that this founder is not a seller. For Farmer J to be the right answer, Sweetgreen would have to want a broader hot-food business and Farmer J&rsquo;s US expansion would have to stall to the point where its backers preferred a defensive combination; neither holds today.</li>
           </ul>
 
           <h3>atis</h3>
-          <ul class="bullets">
+          <ul>
             <li>atis is the closest of the three to Sweetgreen in format, a build-your-own salad and bowl concept, but it is both narrower in proposition and harder to transact. Founded in 2019 by Eleanor Warder and Phil Honer, a husband-and-wife team <a href="https://wharf-life.com/interviews/atis-canary-wharf-eleanor-warder-canada-place/">who drew their inspiration directly from Sweetgreen</a> while Honer pursued his MBA at HBS.</li>
             <li>It sells plant-forward bowls and protein plates under a design-led brand, with a more explicitly plant-based emphasis than Sweetgreen&rsquo;s omnivore menu. It is not short of capital, having <a href="https://www.mca-insight.com/interviews/atis-secures-a-further-seven-sites/700198.article">raised around &pound;8m in early 2025 to roughly double its estate and begin looking beyond London, with a target of 20 sites</a>.</li>
             <li>In my view, atis&rsquo;s primary obstacle is the cap table rather than the cash. The business remains founder-controlled and lightly institutionalised, which makes a clean stock combination harder to negotiate, leaves the brand more founder-dependent, and, most importantly, means there is no institutional investor on a clock with an incentive to sell. A target whose owners are not looking to exit is not a worse asset; it is one that may simply never come to market.</li>
@@ -90,7 +113,7 @@
           </ul>
 
           <h3>The Salad Project</h3>
-          <ul class="bullets">
+          <ul>
             <li>In my view, The Salad Project (TSP) is the strongest fit for this merger; I expand on my argument(s) in the &ldquo;Thesis&rdquo; section below, but this section provides a brief overview like the other two above.</li>
             <li><a href="https://foodtogoconference.co.uk/live/en/node/speakerprofile-the-salad-project-florian-chezelles">Founded in 2021 by Florian de Chezelles and James Dare</a> in Spitalfields, it has built a cult following for a curated, creative, health-focused lunch and grown to over a dozen London sites. Given the demand for TSP and the market itself, I&rsquo;d expect a few more by mid-2028.</li>
             <li>It sells fully customisable salads and protein bowls made from scratch, and its positioning, that salad can be a lifestyle, is the closest thing in London to Sweetgreen&rsquo;s own. The three reasons it wins are developed next.</li>
@@ -99,19 +122,19 @@
           <h2>Thesis</h2>
 
           <h3>Product rationale</h3>
-          <ul class="bullets">
+          <ul>
             <li>The Salad Project is the only pure-play premium salad and bowl operator in the set with a made-from-scratch, design-led, lifestyle identity, which is to say the only one whose proposition maps almost directly onto Sweetgreen&rsquo;s.</li>
             <li>Farmer J&rsquo;s broader hot-food menu and atis&rsquo;s plant-forward emphasis each diverge from the Sweetgreen template in ways that complicate menu, supply chain and brand, whereas TSP does not, so the integration reduces to putting Sweetgreen&rsquo;s capital, systems and supply relationships behind an operator already executing the same concept rather than reconciling two different food models.</li>
           </ul>
 
           <h3>Geographic rationale</h3>
-          <ul class="bullets">
+          <ul>
             <li>In January 2026 The Salad Project secured &pound;9m, from investors including Will Shu (founder of <a href="https://deliveroo.co.uk/">Deliveroo</a>) and Nick Jones (founder of <a href="https://www.sohohouse.com/">Soho House</a>) <a href="https://www.thecaterer.com/news/the-salad-project-secures-funding-to-expand-into-europe">to fund a continental European expansion beginning with a first overseas site in the Le Sentier district of Paris</a>, having previously set a target of 20 sites by mid-2027.</li>
             <li>A target building into Europe rather than the U.S. (contrary to Farmer J&rsquo;s stated ambitions) is complementary to Sweetgreen. Firstly, there is no collision on Sweetgreen&rsquo;s home turf, and the deal delivers a nascent continental beachhead, so a single transaction converts a UK entry into a European business. Secondly, for an acquirer whose entire footprint is American, inheriting a London estate and a Paris launch together is a significantly better starting position than London alone.</li>
           </ul>
 
           <h3>Capital rationale</h3>
-          <ul class="bullets">
+          <ul>
             <li>The January 2026 round brought in the private equity firm <a href="https://active.partners/">Active Partners</a>, with companies like <a href="https://leon.co/">LEON</a>, <a href="https://caravanandco.com/?srsltid=AfmBOop_TJe5NQvAICaZfPv4Mq9AT_t010FwoK7Vzi5R13qbY4QXc0IZ">Caravan</a>, and <a href="https://www.chickenshop.com/">Chicken Shop</a> within its portfolio.</li>
             <li>An institutional sponsor like Active Partners&mdash;that exists to sell, on a clock, at a defined return&mdash;makes an M&amp;A process rational and timely. This thus provides a practical reason TSP may be considered a seller by design where the other two are not.</li>
             <li>Although more speculative, TSP&rsquo;s founders are the youngest across the three. This could indicate one of two things regarding a desire to &lsquo;sell&rsquo;: either more enthusiasm and a desire to scale the company with longevity in mind, or a preference for a liquid exit.</li>
@@ -119,14 +142,14 @@
 
           <h3>The synergies</h3>
           <p>Sweetgreen brings the following to the table:</p>
-          <ul class="bullets">
+          <ul>
             <li>The brand and balance sheet: a category-defining name in its home market and listed-company capital that accelerate landlord access and fund the stated twenty-site UK target and the European rollout faster than a &pound;9m round allows.</li>
             <li>The unit-economics uplift: Sweetgreen has guided its <a href="https://www.restaurantdive.com/news/sweetgreen-goes-public-with-364m-ipo/610218/">average unit volume toward $2.8-$3.0m</a>, well above an inferred London salad-bar average unit volume (AUV) of roughly &pound;1.2-1.8m. Whilst UK per-visit spend sits structurally below the US so the gap will not fully close, the menu engineering and operating playbook behind that figure point to a real per-site uplift.</li>
             <li><a href="https://www.qsrmagazine.com/growth/finance/sweetgreens-automated-infinite-kitchen-readies-for-a-step-up-in-2025/">The Infinite Kitchen automation</a>: Sweetgreen assembles bowls with this and now <a href="https://www.restaurantdive.com/news/sweetgreen-sells-spyce-to-wonder-186-million/804959/">licenses from Wonder following the Spyce sale</a>. Its automated locations have run restaurant-level margins of around 28% against roughly 18% chain-wide, a labour-led gap that is worth more in high-wage London than across much of the US. Additionally, the Salad Project&rsquo;s existing digital-only collection formats give it the operating affinity to absorb that technology.</li>
             <li>Additional factors include: a digital and loyalty stack and a continuous menu-innovation pipeline that a twelve-site independent presumably lacks the resources to achieve.</li>
           </ul>
           <p>TSP brings the following to the table:</p>
-          <ul class="bullets">
+          <ul>
             <li>A turnkey UK operating company spanning property, labour, supply and planning;</li>
             <li>A proven, de-risked concept at London economics that removes the single largest greenfield risk;</li>
             <li>An impending Paris launch that extends the business to the Continent;</li>
@@ -145,13 +168,13 @@
           <p>The most directly relevant transaction comparable is Wingstop UK, whose sale at more than &pound;400m on an expected &pound;150m of revenue is roughly 2.7x revenue for a high-growth US-brand UK operator. Leveraging the Wingstop multiple, in the region of 3x-6x an inferred high-teens revenue run-rate results in an enterprise value of approximately &pound;60m to &pound;120m, or about $80-160m. The lower end reflects a pre-emptive deal struck before the European model is proven, whilst the upper end reflects a sale after the Paris launch has shown that the format is duplicable.</p>
           <p>Whilst a stock deal favours Sweetgreen, paying in equity rather than cash is the thing that makes the deal less attractive to TSP, since Active Partners and the founders would be taking 'depressed paper' in a US small-cap that isn't necessarily thriving. One resolution might be to split the consideration by counterparty rather than treat it as uniform. The financial sponsor(s) including institutional investors (like Active) and angels (like Shu and Jones), all of which exist to net a clean return on a defined horizon, are presumably satisfied with cash, drawn modestly against the post-Spyce liquidity, possibly alongside a collar that caps the downside on any $SG stock received. The founders, whose continued effort is the actual asset, are paid predominantly in Sweetgreen equity with a meaningful earn-out tied to UK and European unit growth, which aligns them to, and incentivises, daily operations. That mix conserves the bulk of Sweetgreen&rsquo;s cash, keeps de Chezelles, Dare and their team invested, and prices the stock risk accordingly.</p>
 
-        </div>
-      </details>
+      </div>
 
-      <a class="back" href="../index.html">Back to all posts</a>
+      <a class="back" href="/">&larr; All memos</a>
     </article>
 
     <footer class="foot">&copy; Tiwa Adejuyigbe, 2026</footer>
   </div>
+  <script src="/site.js"></script>
 </body>
 </html>
