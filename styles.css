@@ -238,7 +238,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-vis
   .feed__no{min-width:40px; font-size:14px;}
   .feed__title{flex:1 1 auto; font-size:17px;}
   .feed__dots{display:none;}
-  .feed__date{flex:0 0 100%; margin:3px 0 0 52px; font-size:13px;}
+  .feed__date{flex:0 0 100%; margin:3px 0 0; padding-left:52px; font-size:13px;}
   .meta{gap:10px; font-size:14px;}
   .label{margin:42px 0 18px;}
   /* the progress bar drops to its own line beneath the controls */

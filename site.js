@@ -198,16 +198,20 @@
     }
   });
 
-  /* --- 4. share -------------------------------------------- */
+  /* --- 4. share -------------------------------------------
+     Copies the canonical URL rather than the address bar, so sharing from
+     a Vercel preview deployment still hands out the real one. */
   Array.prototype.forEach.call(document.querySelectorAll("[data-share]"), function (btn) {
     var original = btn.textContent;
+    var canonical = document.querySelector('link[rel="canonical"]');
+    var url = canonical && canonical.href ? canonical.href : window.location.href;
     btn.addEventListener("click", function () {
       var done = function (msg) {
         btn.textContent = msg;
         window.setTimeout(function () { btn.textContent = original; }, 1800);
       };
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(window.location.href)
+        navigator.clipboard.writeText(url)
           .then(function () { done("Link copied"); })
           .catch(function () { done("Copy failed"); });
       } else {

@@ -17,8 +17,9 @@
 
 1. Duplicate `posts/template.html` and rename it `posts/<slug>.html`
    (lowercase, dashes for spaces — e.g. `posts/acme-robotics.html`).
-2. Edit the spots marked `<<< EDIT >>>`: the page title, the company name,
-   the month and memo number, the recording, and the memo itself.
+2. Edit the spots marked `<<< EDIT >>>`: the page title, the canonical and
+   og:url (swap `company-name` for the slug, twice) and og:title, the company
+   name, the month and memo number, the recording, and the memo itself.
    If there's no recording, delete the whole `<div class="player">` block.
 3. Open `index.html` and add one object to the `POSTS` list at the top:
 
@@ -58,14 +59,39 @@ All four live at the top of `styles.css`:
     --blue   #1B5FFF   hover states only — never used at rest
     --rule   #E6E6E6   the hairlines under rows and around sections
 
-## Clean URLs (the ".html" disappearing)
+## URLs and the domain
 
-`vercel.json` makes the deployed site serve `/posts/acme-robotics` instead of
-`/posts/acme-robotics.html` (it 308-redirects the `.html` version to the clean one).
-This only happens on the live site — opening the files directly on your computer
-still shows `.html`, which is normal.
+The site lives at **https://shipoftheses.vercel.app**. Every internal link is
+a root-absolute clean path — `/`, `/faqs`, `/submit`, `/posts/oura` — so a
+click goes straight to the page instead of bouncing through the `.html`
+redirect that `vercel.json`'s `cleanUrls` sets up.
 
-- On **Vercel**: nothing to do, `vercel.json` handles it.
+Each page also carries a `<link rel="canonical">` and an `og:url` pointing at
+that domain, and the "Share memo" button copies the canonical URL rather than
+whatever is in the address bar — so sharing from a Vercel preview deployment
+still hands out the real link.
+
+If you ever move to a custom domain, those tags are the only place the domain
+is written down:
+
+    grep -rl shipoftheses.vercel.app .
+
+## Previewing locally
+
+Because links are root-absolute, opening the files directly in a browser
+(`file://`) no longer works — the stylesheet and links resolve against your
+filesystem root. Run a server instead, from the repo folder:
+
+    npx serve
+
+That maps `/posts/oura` to `posts/oura.html` the same way Vercel does. So does
+`npx vercel dev`, which reads `vercel.json` directly. Plain
+`python3 -m http.server` will *not* work: it doesn't do clean URLs.
+
+## Hosting notes
+
+- On **Vercel**: nothing to do, `vercel.json` handles the clean URLs, and its
+  CDN serves HTTP Range requests, which is what lets the audio player seek.
 - On **Netlify**: pretty URLs are on by default; you can delete `vercel.json`.
-- On **GitHub Pages**: `.html` stays in the URL unless you switch to a
-  folder-per-post layout — ask if you want that instead.
+- On **GitHub Pages**: clean URLs need a folder-per-post layout — ask if you
+  want that instead.
