@@ -64,8 +64,11 @@ All four live at the top of `styles.css`:
     --ink    #000000   headings, memo titles, body copy
     --muted  #6B6B6B   index numbers, leader dots, dates, nav
     --blue   #1B5FFF   hover states only — never used at rest
-    --rule   #E6E6E6   the hairlines under rows and around sections
-    --serif  Libre Baskerville, used for the wordmark only
+    --rule   #E6E6E6   the hairline under each index row
+
+Letter spacing is set once as `--track` on `:root` and inherited by body
+copy; headings tighten further on their own rules. Figtree at 400 and 500
+is the only family on the site.
 
 ## URLs and the domain
 
