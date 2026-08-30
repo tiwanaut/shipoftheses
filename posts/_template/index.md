@@ -1,10 +1,9 @@
-<!-- Copy this to posts/<slug>.md, then add one object to POSTS in posts.js
-     with the same slug. The title, date and memo number live there, not
-     here — this file is the memo body only.
+<!-- Copy the whole posts/_template/ folder to posts/<slug>/, then add one
+     object to POSTS in posts.js with the same slug. index.html in the folder
+     is boilerplate — leave it alone. Write the memo below.
 
-     Save the recording as audio/<slug>.mp3, matching the slug, and the
-     player finds it on its own. Until it exists the player reads
-     "Recording coming soon".
+     The title, date and memo number live in posts.js, not here.
+     Save the recording as audio/<slug>.mp3 and the player finds it.
 
      Everything below is Markdown. Delete these lines and write. -->
 
