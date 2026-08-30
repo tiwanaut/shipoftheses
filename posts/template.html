@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <!-- =====================================================================
-     NEW POST — to add a company:
-       1. Duplicate this file, rename it posts/<company-name>.html
+     NEW MEMO
+       1. Duplicate this file, rename it posts/<slug>.html
           (lowercase, dashes instead of spaces, e.g. posts/acme-robotics.html)
-       2. Edit the 4 spots marked  <<< EDIT >>>  below.
-       3. Open index.html and add one <li> linking to your new file
-          (copy the existing line there).
+       2. Edit the spots marked  <<< EDIT >>>  below.
+       3. Open index.html and add one object to the POSTS list at the top,
+          using the same slug, and the next memo number.
      Nothing else needs changing.
      ===================================================================== -->
 <head>
@@ -18,46 +18,83 @@
 </head>
 <body>
   <div class="page">
-    <header class="site">
-      <a class="site__name" href="../index.html">Ship of Theses</a>
+
+    <header class="mast">
+      <a class="mast__name" href="../index.html">Ship of Theses</a>
+      <nav class="nav">
+        <span class="search" data-search data-search-target="../index.html">
+          <button class="search__toggle" type="button" data-search-toggle
+                  aria-expanded="false" aria-label="Search memos">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                 stroke-linecap="round" aria-hidden="true">
+              <circle cx="10.5" cy="10.5" r="6.5"></circle><path d="M15.5 15.5 21 21"></path>
+            </svg>
+          </button>
+          <input class="search__field" type="search" data-search-field
+                 placeholder="Search memos" aria-label="Search memos" autocomplete="off" />
+        </span>
+        <a class="nav__link" href="../faqs.html">FAQs</a>
+        <a class="nav__cta" href="../submit.html" aria-label="Submit a company"><span class="nav__full">Submit a company</span><span class="nav__short" aria-hidden="true">Submit</span></a>
+      </nav>
     </header>
 
-    <article>
+    <article class="post">
       <!-- <<< EDIT 2: company name >>> -->
       <h1 class="post__title">Company name</h1>
-      <!-- <<< EDIT 3: date, like "1 July 2026" >>> -->
-      <p class="post__date">1 July 2026</p>
 
-      <!-- <<< EDIT 4a: tl;dr bullets (the quick summary) >>> -->
-      <details class="drop" open>
-        <summary>TL;DR</summary>
-        <div class="drop__body">
-          <ul class="bullets">
-            <li>First key takeaway.</li>
-            <li>Second key takeaway.</li>
-            <li>Third key takeaway.</li>
-          </ul>
+      <!-- <<< EDIT 3: month and memo number — must match index.html >>> -->
+      <div class="meta">
+        <span>Aug 2026</span>
+        <span class="meta__sep" aria-hidden="true">|</span>
+        <span>#005</span>
+        <span class="meta__sep" aria-hidden="true">|</span>
+        <button class="meta__share" type="button" data-share>Share memo</button>
+      </div>
+
+      <!-- <<< EDIT 4 (optional): the recording.
+           Drop the mp3 in audio/ and point src at it.
+           If this memo has no recording, delete this whole block. >>> -->
+      <div class="player" data-player>
+        <audio preload="metadata" src="../audio/company-name.mp3"></audio>
+        <button class="player__btn player__play" type="button" data-play aria-label="Play">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>
+        </button>
+        <button class="player__btn player__skip" type="button" data-back aria-label="Back 15 seconds">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 5.4a6.8 6.8 0 1 1-6.8 6.8"/><path d="M12 2.4 8.7 5.4 12 8.4"/>
+            <text x="12" y="15.1" font-size="9" font-weight="600" fill="currentColor" stroke="none" text-anchor="middle">15</text>
+          </svg>
+        </button>
+        <button class="player__btn player__skip" type="button" data-fwd aria-label="Forward 15 seconds">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 5.4a6.8 6.8 0 1 0 6.8 6.8"/><path d="M12 2.4 15.3 5.4 12 8.4"/>
+            <text x="12" y="15.1" font-size="9" font-weight="600" fill="currentColor" stroke="none" text-anchor="middle">15</text>
+          </svg>
+        </button>
+        <span class="player__time" data-elapsed>0:00</span>
+        <div class="player__bar" data-bar role="slider" tabindex="0" aria-label="Seek"
+             aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <span class="player__track"><span class="player__fill" data-fill></span></span>
         </div>
-      </details>
+        <span class="player__time" data-duration>--:--</span>
+        <button class="player__rate" type="button" data-rate aria-label="Playback speed">1x</button>
+      </div>
 
-      <!-- <<< EDIT 4b: full memo (the long write-up) >>> -->
-      <details class="drop">
-        <summary>Memo</summary>
-        <div class="drop__body">
-          <p>Opening paragraph.</p>
-          <h2>Background</h2>
-          <p>Write the background here.</p>
-          <h2>What happened</h2>
-          <p>Write the main story here.</p>
-          <h2>So what</h2>
-          <p>Write the takeaway here.</p>
-        </div>
-      </details>
+      <p class="label">Memo</p>
 
-      <a class="back" href="../index.html">Back to all posts</a>
+      <!-- <<< EDIT 5: the memo itself — three or four paragraphs of prose >>> -->
+      <div class="prose">
+        <p>Opening paragraph: what the company is and why it is worth the memo.</p>
+        <p>Second paragraph: the substance — the numbers, the market, the mechanics.</p>
+        <p>Third paragraph: the objection, and the answer to it.</p>
+        <p>Closing paragraph: the thesis, stated plainly.</p>
+      </div>
+
+      <a class="back" href="../index.html">&larr; All memos</a>
     </article>
 
     <footer class="foot">&copy; Tiwa Adejuyigbe, 2026</footer>
   </div>
+  <script src="../site.js"></script>
 </body>
 </html>

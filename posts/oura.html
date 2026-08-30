@@ -8,18 +8,38 @@
 </head>
 <body>
   <div class="page">
-    <header class="site">
-      <a class="site__name" href="../index.html">Ship of Theses</a>
+    <header class="mast">
+      <a class="mast__name" href="../index.html">Ship of Theses</a>
+      <nav class="nav">
+        <span class="search" data-search data-search-target="../index.html">
+          <button class="search__toggle" type="button" data-search-toggle
+                  aria-expanded="false" aria-label="Search memos">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                 stroke-linecap="round" aria-hidden="true">
+              <circle cx="10.5" cy="10.5" r="6.5"></circle><path d="M15.5 15.5 21 21"></path>
+            </svg>
+          </button>
+          <input class="search__field" type="search" data-search-field
+                 placeholder="Search memos" aria-label="Search memos" autocomplete="off" />
+        </span>
+        <a class="nav__link" href="../faqs.html">FAQs</a>
+        <a class="nav__cta" href="../submit.html" aria-label="Submit a company"><span class="nav__full">Submit a company</span><span class="nav__short" aria-hidden="true">Submit</span></a>
+      </nav>
     </header>
 
-    <article>
+    <article class="post">
       <h1 class="post__title">Oura</h1>
-      <p class="post__date">August 2026</p>
+      <div class="meta">
+        <span>Aug 2026</span>
+        <span class="meta__sep" aria-hidden="true">|</span>
+        <span>#004</span>
+        <span class="meta__sep" aria-hidden="true">|</span>
+        <button class="meta__share" type="button" data-share>Share memo</button>
+      </div>
 
-      <details class="drop" open>
-        <summary>TL;DR</summary>
-        <div class="drop__body">
-          <ul class="bullets">
+      <p class="label">TL;DR</p>
+      <div class="prose">
+          <ul>
             <li>Oura has sold more than 5.5 million rings since 2015, passed five million paid members, and doubled revenue in each of the last three years to approximately $1bn in 2025. Official guidance for 2026 is more than $1.5bn, with CEO Tom Hale indicating an upper case closer to $2bn. It was valued at $11bn in an October 2025 Series E and <a href="https://www.cnbc.com/2026/05/21/oura-smart-ring-ipo-filing.html">filed confidentially for a US listing on 21 May 2026</a>.</li>
             <li>I believe Oura should not proceed with the listing. Instead, I propose that Apple should acquire the company. Apple has filed ring-related patents since 2019 and designs its own silicon and optical sensors, so building a ring sits within its engineering reach. What it would then have to assemble is what Oura already holds: a competitive foothold built over nearly a decade, which I would expect to cost Apple one to two years and substantial marketing expenditure to approach.</li>
             <li>Oura's <a href="https://www.businesswire.com/news/home/20250909387922/en/U.S.-International-Trade-Commission-Rules-in-Favor-of-URA-in-Patent-Case-Against-Ultrahuman-and-RingConn">September 2025 win at the International Trade Commission</a> excluded Ultrahuman and RingConn rings from the US market and established its form-factor patents as valid, enforceable and infringed. An 'Apple Ring' designed in-house would launch into a category where the incumbent holds adjudicated exclusionary intellectual property, and acquiring Oura converts that obstacle into an owned asset.</li>
@@ -27,12 +47,10 @@
             <li>Oura's <a href="https://ouraring.com/blog/oura-acquires-doublepoint/">March 2026 acquisition of Doublepoint</a>, a Helsinki gesture-recognition company, gives the ring an input function alongside its sensing function. That maps directly onto Apple's purchase of Q.ai in January 2026, reported at $1.6bn to $2bn, and onto the screenless glasses roadmap which presumably inspired the acquisition.</li>
             <li>I expect an acquisition price of $20bn, being roughly 13x 2026 revenue and approximately 1.8x the Series E valuation; if so I imagine it would be structured 60% cash and 40% stock, or roughly $12bn against $8bn.</li>
           </ul>
-        </div>
-      </details>
+      </div>
 
-      <details class="drop">
-        <summary>Memo</summary>
-        <div class="drop__body">
+      <p class="label">Memo</p>
+      <div class="prose">
           <h2>The Company</h2>
 
           <h3>Background</h3>
@@ -73,13 +91,13 @@
 
           <h2>Thesis</h2>
           <p>Oura should be acquired by Apple rather than listed, at $20bn, structured 60% cash and 40% stock, in a window running from the leadership handover on 1 September 2026 to the first quarter of 2027. In return, Apple obtains a customer base it would otherwise spend one to two years and considerable marketing expenditure assembling, a paying relationship with people who already own its phones, and the health operating capability its internal programmes do not produce. Oura's institutional investors receive a return meaningfully above the Series E mark, without holding the company through the period in which the risk of Apple entering the category is highest.</p>
-        </div>
-      </details>
+      </div>
 
-      <a class="back" href="../index.html">Back to all posts</a>
+      <a class="back" href="../index.html">&larr; All memos</a>
     </article>
 
     <footer class="foot">&copy; Tiwa Adejuyigbe, 2026</footer>
   </div>
+  <script src="../site.js"></script>
 </body>
 </html>
