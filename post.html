@@ -1,27 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <!-- =====================================================================
-     NEW MEMO
-       1. Duplicate this file, rename it posts/<slug>.html
-          (lowercase, dashes instead of spaces, e.g. posts/acme-robotics.html)
-       2. Edit the spots marked  <<< EDIT >>>  below.
-       3. Open index.html and add one object to the POSTS list at the top,
-          using the same slug, and the next memo number.
-     Nothing else needs changing.
+     The shell every memo is rendered into. One file, all memos.
+     It reads the slug from the URL, finds that memo in posts.js, and
+     renders posts/<slug>.md. Nothing here needs editing to publish.
      ===================================================================== -->
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- <<< EDIT 1: page title >>> -->
-  <title>Company name &mdash; Ship of Theses</title>
+  <title>Ship of Theses</title>
   <link rel="stylesheet" href="/styles.css" />
-  <!-- <<< EDIT 1b: swap "company-name" for this memo's slug, twice, and the
-       og:title for the company name >>> -->
-  <link rel="canonical" href="https://shipoftheses.vercel.app/posts/company-name" />
+  <link rel="canonical" href="https://shipoftheses.vercel.app/" />
   <meta property="og:site_name" content="Ship of Theses" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="Company name" />
-  <meta property="og:url" content="https://shipoftheses.vercel.app/posts/company-name" />
+  <meta property="og:title" content="Ship of Theses" />
+  <meta property="og:url" content="https://shipoftheses.vercel.app/" />
 </head>
 <body>
   <div class="page">
@@ -45,26 +38,18 @@
     </header>
 
     <article class="post">
-      <!-- <<< EDIT 2: company name >>> -->
-      <h1 class="post__title">Company name</h1>
+      <h1 class="post__title" data-title></h1>
 
-      <!-- <<< EDIT 3: month and memo number — must match index.html >>> -->
       <div class="meta">
-        <span>Aug 2026</span>
+        <span data-date></span>
         <span class="meta__sep" aria-hidden="true">|</span>
-        <span>#005</span>
+        <span data-no></span>
         <span class="meta__sep" aria-hidden="true">|</span>
         <button class="meta__share" type="button" data-share>Share memo</button>
       </div>
 
-      <!-- <<< EDIT 4: the recording.
-           Save the file as  audio/<slug>.mp3  — the same slug as this file,
-           so posts/acme-robotics.html pairs with audio/acme-robotics.mp3 —
-           then swap "company-name" below for that slug.
-           Until the file exists the player shows "Recording coming soon".
-           Delete the whole block only if this memo will never have one. >>> -->
       <div class="player" data-player>
-        <audio preload="metadata" src="/audio/company-name.mp3"></audio>
+        <audio preload="metadata"></audio>
         <button class="player__btn player__play" type="button" data-play aria-label="Play">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>
         </button>
@@ -90,25 +75,23 @@
         <button class="player__rate" type="button" data-rate aria-label="Playback speed">1x</button>
       </div>
 
-
-      <!-- <<< EDIT 5: the memo — four to eight bullets, one line or two each.
-           This is the summary. The argument itself goes in the recording. >>> -->
-      <div class="prose">
-        <ul>
-          <li>What the company is, and the number that makes it interesting.</li>
-          <li>How it makes money, and how fast that is growing.</li>
-          <li>The market it sits in, and who else is in it.</li>
-          <li>The thing most people get wrong about it.</li>
-          <li>The strongest objection to the thesis.</li>
-          <li>The thesis, stated plainly.</li>
-        </ul>
-      </div>
+      <div class="prose" data-body></div>
+      <noscript>
+        <p class="prose">This memo is written in Markdown and rendered in the browser.
+          <a href="" data-raw>Read the source</a>.</p>
+      </noscript>
 
       <a class="back" href="/">&larr; All memos</a>
     </article>
 
+    <nav class="rail" data-rail aria-label="Sections in this memo"></nav>
+
     <footer class="foot">&copy; Tiwa Adejuyigbe, 2026</footer>
   </div>
+
+  <script src="/posts.js"></script>
+  <script src="/vendor/marked.min.js"></script>
+  <script src="/post.js"></script>
   <script src="/site.js"></script>
 </body>
 </html>
