@@ -5,10 +5,8 @@
     index.html        the home page — the POSTS list at the top is the index
     styles.css        all styling for the whole site (edit once, applies everywhere)
     site.js           search, the month scrubber, the audio player, the share button
-    faqs.html         the FAQs page
-    submit.html       the "Submit a company" page
     vercel.json       makes URLs drop the ".html" once deployed (see below)
-    audio/            one mp3 per memo, named after the memo's slug
+    audio/            one recording per memo, named after the memo's slug
     posts/
       template.html   copy this to write a new memo
       <company>.html  one file per company
@@ -20,7 +18,6 @@
 2. Edit the spots marked `<<< EDIT >>>`: the page title, the canonical and
    og:url (swap `company-name` for the slug, twice) and og:title, the company
    name, the month and memo number, the recording, and the memo itself.
-   If there's no recording, delete the whole `<div class="player">` block.
 3. Open `index.html` and add one object to the `POSTS` list at the top:
 
        { no: 5, title: "Acme Robotics", slug: "acme-robotics", date: "2026-09" },
@@ -33,22 +30,32 @@
 The index, the year headings, the memo count and the scrubber are all built
 from that one list, so there's nothing else to keep in sync.
 
-## The recording
+## The memo, and the recording
 
-Drop the mp3 in `audio/`, named after the slug (`audio/acme-robotics.mp3`),
-and point the player's `<audio src="...">` at it. The player handles play,
-back and forward fifteen seconds, seeking, elapsed and total time, and a
-speed toggle running 1x → 1.25x → 1.5x → 1.75x → 2x. Memos without a
-recording simply don't carry the block.
+A memo is **four to eight bullets** — the summary. The argument itself goes in
+the recording, which is where the detail belongs.
 
-## Things you may still want to set
+Save the recording as `audio/<slug>.mp3`, using the same slug as the post, so
+`posts/acme-robotics.html` pairs with `audio/acme-robotics.mp3`. Then point the
+player's `<audio src="...">` at it.
 
-- **`submit.html`** — the page is live but the form isn't. Make a form at
-  [tally.so](https://tally.so), copy its share link, and paste it into
-  `SUBMIT_FORM_URL` near the top of `submit.html`. Until then the page shows
-  a short holding note. Any embeddable form URL works the same way.
-- **`faqs.html`** — the six questions there are stubs. Rewrite the answers,
-  delete any you don't want, and copy a `<div class="qa">` block to add more.
+**A memo can publish before its recording exists.** The player shows
+"Recording coming soon" with its controls dimmed until the file is there, then
+starts working on the next deploy — no other edit needed. All four existing
+memos are in that state now.
+
+The player has play/pause, back and forward fifteen seconds, a draggable
+progress bar, elapsed and total time, and a **speed toggle** cycling
+1x → 1.25x → 1.5x → 1.75x → 2x. See `audio/readme.md` for file formats and
+size limits.
+
+## Submit a company
+
+The nav button points straight at `https://tally.so`. Once you've built the
+actual form, swap that URL for the form's share link — it appears once per
+HTML file:
+
+    grep -rl 'https://tally.so' .
 
 ## Colours
 
@@ -58,11 +65,12 @@ All four live at the top of `styles.css`:
     --muted  #6B6B6B   index numbers, leader dots, dates, nav
     --blue   #1B5FFF   hover states only — never used at rest
     --rule   #E6E6E6   the hairlines under rows and around sections
+    --serif  Libre Baskerville, used for the wordmark only
 
 ## URLs and the domain
 
 The site lives at **https://shipoftheses.vercel.app**. Every internal link is
-a root-absolute clean path — `/`, `/faqs`, `/submit`, `/posts/oura` — so a
+a root-absolute clean path — `/` and `/posts/oura` — so a
 click goes straight to the page instead of bouncing through the `.html`
 redirect that `vercel.json`'s `cleanUrls` sets up.
 

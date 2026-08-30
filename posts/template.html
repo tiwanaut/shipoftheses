@@ -40,8 +40,7 @@
           <input class="search__field" type="search" data-search-field
                  placeholder="Search memos" aria-label="Search memos" autocomplete="off" />
         </span>
-        <a class="nav__link" href="/faqs">FAQs</a>
-        <a class="nav__cta" href="/submit" aria-label="Submit a company"><span class="nav__full">Submit a company</span><span class="nav__short" aria-hidden="true">Submit</span></a>
+        <a class="nav__cta" href="https://tally.so" target="_blank" rel="noopener" aria-label="Submit a company"><span class="nav__full">Submit a company</span><span class="nav__short" aria-hidden="true">Submit</span></a>
       </nav>
     </header>
 
@@ -58,9 +57,12 @@
         <button class="meta__share" type="button" data-share>Share memo</button>
       </div>
 
-      <!-- <<< EDIT 4 (optional): the recording.
-           Drop the mp3 in audio/ and point src at it.
-           If this memo has no recording, delete this whole block. >>> -->
+      <!-- <<< EDIT 4: the recording.
+           Save the file as  audio/<slug>.mp3  — the same slug as this file,
+           so posts/acme-robotics.html pairs with audio/acme-robotics.mp3 —
+           then swap "company-name" below for that slug.
+           Until the file exists the player shows "Recording coming soon".
+           Delete the whole block only if this memo will never have one. >>> -->
       <div class="player" data-player>
         <audio preload="metadata" src="/audio/company-name.mp3"></audio>
         <button class="player__btn player__play" type="button" data-play aria-label="Play">
@@ -84,17 +86,23 @@
           <span class="player__track"><span class="player__fill" data-fill></span></span>
         </div>
         <span class="player__time" data-duration>--:--</span>
+        <span class="player__note" data-player-note hidden>Recording coming soon</span>
         <button class="player__rate" type="button" data-rate aria-label="Playback speed">1x</button>
       </div>
 
       <p class="label">Memo</p>
 
-      <!-- <<< EDIT 5: the memo itself — three or four paragraphs of prose >>> -->
+      <!-- <<< EDIT 5: the memo — four to eight bullets, one line or two each.
+           This is the summary. The argument itself goes in the recording. >>> -->
       <div class="prose">
-        <p>Opening paragraph: what the company is and why it is worth the memo.</p>
-        <p>Second paragraph: the substance — the numbers, the market, the mechanics.</p>
-        <p>Third paragraph: the objection, and the answer to it.</p>
-        <p>Closing paragraph: the thesis, stated plainly.</p>
+        <ul>
+          <li>What the company is, and the number that makes it interesting.</li>
+          <li>How it makes money, and how fast that is growing.</li>
+          <li>The market it sits in, and who else is in it.</li>
+          <li>The thing most people get wrong about it.</li>
+          <li>The strongest objection to the thesis.</li>
+          <li>The thesis, stated plainly.</li>
+        </ul>
       </div>
 
       <a class="back" href="/">&larr; All memos</a>

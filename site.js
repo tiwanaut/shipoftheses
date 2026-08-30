@@ -92,11 +92,17 @@
 
     var mark = function () {
       var line = window.innerHeight * 0.35;
+      var max = document.documentElement.scrollHeight - window.innerHeight;
       var current = buttons[0];
-      buttons.forEach(function (btn) {
-        var target = anchors[btn.getAttribute("data-scrub-key")];
-        if (target && target.getBoundingClientRect().top <= line) current = btn;
-      });
+      // at the top of the page — or on a page too short to scroll — the first
+      // month is the active one, whatever sits above the trigger line
+      if (window.pageYOffset > 0 && max > 0) {
+        buttons.forEach(function (btn) {
+          var target = anchors[btn.getAttribute("data-scrub-key")];
+          if (target && target.getBoundingClientRect().top <= line) current = btn;
+        });
+        if (window.pageYOffset >= max - 2) current = buttons[buttons.length - 1];
+      }
       buttons.forEach(function (btn) {
         btn.classList.toggle("is-active", btn === current);
       });
@@ -136,7 +142,22 @@
     var elapsed = player.querySelector("[data-elapsed]");
     var duration = player.querySelector("[data-duration]");
     var rate = player.querySelector("[data-rate]");
+    var note = player.querySelector("[data-player-note]");
     var rateIndex = 0;
+
+    // no file up yet (or it failed to load) — dim the transport and say so
+    var markEmpty = function () {
+      player.classList.add("is-empty");
+      if (bar) bar.hidden = true;
+      if (note) note.hidden = false;
+      elapsed.hidden = true;
+      duration.hidden = true;
+    };
+    audio.addEventListener("error", markEmpty);
+    // the element starts loading during parse, so the error may already have
+    // fired by the time this runs — check the state as well as listening
+    if (!audio.getAttribute("src") || audio.error ||
+        audio.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) markEmpty();
 
     var icons = {
       play: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>',
