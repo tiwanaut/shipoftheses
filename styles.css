@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Figtree:wght@400;500&family=Instrument+Serif&display=swap");
 
 /* ============================================================
    Ship of Theses — all styling lives here.
@@ -11,6 +11,7 @@
   --muted:#6B6B6B;      /* index numbers, leader dots, dates, nav */
   --blue:#1B5FFF;       /* hover only — never used at rest */
   --rule:#E6E6E6;       /* hairlines under rows */
+  --serif:"Instrument Serif",Georgia,"Times New Roman",serif;   /* the wordmark only */
   --measure:960px;      /* width of the reading column */
   --gutter:48px;
   --ease:cubic-bezier(0.22,1,0.36,1);
@@ -32,8 +33,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-vis
 /* ---------- masthead ---------------------------------------- */
 .mast{display:flex; align-items:center; justify-content:space-between; gap:24px;
   padding:38px 0 0;}
-.mast__name{font-size:21px; font-weight:700; letter-spacing:-0.025em;
-  text-decoration:none; color:var(--ink); white-space:nowrap;}
+.mast__name{font-family:var(--serif); font-size:28px; font-weight:400; letter-spacing:0;
+  line-height:1; text-decoration:none; color:var(--ink); white-space:nowrap;}
 .nav{display:flex; align-items:center; gap:26px;}
 .nav__link{font-size:15px; color:var(--muted); text-decoration:none; white-space:nowrap;
   transition:color 0.2s var(--ease);}
@@ -63,11 +64,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-vis
 /* ---------- hero -------------------------------------------- */
 .hero{margin:96px 0 72px;}
 .hero__title{margin:0; max-width:17ch;
-  font-size:clamp(36px,5vw,58px); line-height:1.05; font-weight:700; letter-spacing:-0.035em;}
+  font-size:clamp(36px,5vw,58px); line-height:1.05; font-weight:500; letter-spacing:-0.035em;}
 
 /* ---------- index list -------------------------------------- */
 .year{display:flex; align-items:baseline; gap:16px; margin:0 0 14px;}
-.year__label{margin:0; font-size:32px; font-weight:700; letter-spacing:-0.03em;}
+.year__label{margin:0; font-size:32px; font-weight:500; letter-spacing:-0.03em;}
 .year__count{font-size:11px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase;
   color:var(--muted);}
 .group + .group{margin-top:64px;}
@@ -106,7 +107,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-vis
 /* ---------- post page --------------------------------------- */
 .post{margin:88px 0 0;}
 .post__title{margin:0; max-width:20ch;
-  font-size:clamp(32px,4.6vw,54px); line-height:1.06; font-weight:700; letter-spacing:-0.035em;}
+  font-size:clamp(32px,4.6vw,54px); line-height:1.06; font-weight:500; letter-spacing:-0.035em;}
 .meta{display:flex; align-items:center; flex-wrap:wrap; gap:14px;
   margin:24px 0 0; font-size:15px; color:var(--muted);}
 .meta__sep{color:var(--rule);}
@@ -123,8 +124,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-vis
 .prose{max-width:74ch;}
 .prose > :first-child{margin-top:0;}
 .prose p{margin:0 0 22px;}
-.prose h2{font-size:22px; font-weight:700; letter-spacing:-0.02em; margin:40px 0 12px;}
-.prose h3{font-size:18px; font-weight:600; letter-spacing:-0.01em; margin:30px 0 10px;}
+.prose h2{font-size:24px; font-weight:500; letter-spacing:-0.02em; margin:48px 0 14px;}
+.prose h3{font-size:19px; font-weight:500; letter-spacing:-0.01em; margin:34px 0 10px;}
 .prose ul{margin:0 0 22px; padding-left:20px;}
 .prose li{margin:0 0 10px;}
 .prose a{color:var(--ink); text-decoration:underline; text-decoration-thickness:1px;
@@ -163,7 +164,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-vis
 
 /* ---------- subscribe (Loops form) -------------------------- */
 .sub{margin:96px 0 0; padding:34px 0 0; border-top:1px solid var(--rule);}
-.sub__title{margin:0 0 6px; font-size:20px; font-weight:700; letter-spacing:-0.02em;}
+.sub__title{margin:0 0 6px; font-size:20px; font-weight:500; letter-spacing:-0.02em;}
 .sub__note{margin:0 0 20px; font-size:15px; color:var(--muted);}
 .newsletter-form{display:flex; gap:10px; flex-wrap:wrap; align-items:center; max-width:520px;}
 .newsletter-form-input{flex:1 1 240px; min-width:0; font:inherit; font-size:16px;
@@ -185,7 +186,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-vis
 
 /* ---------- simple content pages (FAQs, Submit) ------------- */
 .qa{margin:0 0 34px; max-width:74ch;}
-.qa__q{margin:0 0 8px; font-size:19px; font-weight:600; letter-spacing:-0.015em;}
+.qa__q{margin:0 0 8px; font-size:19px; font-weight:500; letter-spacing:-0.015em;}
 .qa__a{margin:0; color:var(--ink);}
 .qa__a a{color:var(--ink); text-decoration:underline; text-decoration-thickness:1px;
   text-underline-offset:3px;}
@@ -222,7 +223,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-vis
   body{font-size:16px;}
   .page{padding-bottom:88px;}
   .mast{padding:26px 0 0; gap:14px;}
-  .mast__name{font-size:19px;}
+  .mast__name{font-size:24px;}
   .nav{gap:16px;}
   .nav__cta{padding:10px 13px; font-size:14px;}
   .nav__full{display:none;}
