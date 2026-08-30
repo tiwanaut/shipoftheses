@@ -27,8 +27,7 @@
           <input class="search__field" type="search" data-search-field
                  placeholder="Search memos" aria-label="Search memos" autocomplete="off" />
         </span>
-        <a class="nav__link" href="/faqs">FAQs</a>
-        <a class="nav__cta" href="/submit" aria-label="Submit a company"><span class="nav__full">Submit a company</span><span class="nav__short" aria-hidden="true">Submit</span></a>
+        <a class="nav__cta" href="https://tally.so" target="_blank" rel="noopener" aria-label="Submit a company"><span class="nav__full">Submit a company</span><span class="nav__short" aria-hidden="true">Submit</span></a>
       </nav>
     </header>
 
@@ -40,6 +39,35 @@
         <span>#001</span>
         <span class="meta__sep" aria-hidden="true">|</span>
         <button class="meta__share" type="button" data-share>Share memo</button>
+      </div>
+
+      <!-- Recording. Drop the file in audio/ as <slug>.mp3 and this comes alive.
+           Delete the whole block if this memo will never have one. -->
+      <div class="player" data-player>
+        <audio preload="metadata" src="/audio/jack-and-jill.mp3"></audio>
+        <button class="player__btn player__play" type="button" data-play aria-label="Play">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>
+        </button>
+        <button class="player__btn player__skip" type="button" data-back aria-label="Back 15 seconds">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 5.4a6.8 6.8 0 1 1-6.8 6.8"/><path d="M12 2.4 8.7 5.4 12 8.4"/>
+            <text x="12" y="15.1" font-size="9" font-weight="500" fill="currentColor" stroke="none" text-anchor="middle">15</text>
+          </svg>
+        </button>
+        <button class="player__btn player__skip" type="button" data-fwd aria-label="Forward 15 seconds">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 5.4a6.8 6.8 0 1 0 6.8 6.8"/><path d="M12 2.4 15.3 5.4 12 8.4"/>
+            <text x="12" y="15.1" font-size="9" font-weight="500" fill="currentColor" stroke="none" text-anchor="middle">15</text>
+          </svg>
+        </button>
+        <span class="player__time" data-elapsed>0:00</span>
+        <div class="player__bar" data-bar role="slider" tabindex="0" aria-label="Seek"
+             aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <span class="player__track"><span class="player__fill" data-fill></span></span>
+        </div>
+        <span class="player__time" data-duration>--:--</span>
+        <span class="player__note" data-player-note hidden>Recording coming soon</span>
+        <button class="player__rate" type="button" data-rate aria-label="Playback speed">1x</button>
       </div>
 
       <p class="label">TL;DR</p>

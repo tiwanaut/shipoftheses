@@ -52,14 +52,9 @@
           <input class="search__field" type="search" data-search-field
                  placeholder="Search memos" aria-label="Search memos" autocomplete="off" />
         </span>
-        <a class="nav__link" href="/faqs">FAQs</a>
-        <a class="nav__cta" href="/submit" aria-label="Submit a company"><span class="nav__full">Submit a company</span><span class="nav__short" aria-hidden="true">Submit</span></a>
+        <a class="nav__cta" href="https://tally.so" target="_blank" rel="noopener" aria-label="Submit a company"><span class="nav__full">Submit a company</span><span class="nav__short" aria-hidden="true">Submit</span></a>
       </nav>
     </header>
-
-    <section class="hero">
-      <h1 class="hero__title">Memos on companies I find interesting</h1>
-    </section>
 
     <main id="index"></main>
     <p class="feed__empty" data-empty hidden>No memos match that search.</p>
@@ -124,13 +119,9 @@
       if (!seenYear[year]) {
         seenYear[year] = true;
         if (html) html += "</ul></section>";
-        var count = posts.filter(function (p) { return p.date.indexOf(year + "-") === 0; }).length;
         html +=
           '<section class="group" data-group>' +
-            '<div class="year">' +
-              '<h2 class="year__label">' + year + "</h2>" +
-              '<span class="year__count">' + count + " memo" + (count === 1 ? "" : "s") + "</span>" +
-            "</div>" +
+            '<h2 class="year">' + year + "</h2>" +
           '<ul class="feed" data-list>';
       }
 
