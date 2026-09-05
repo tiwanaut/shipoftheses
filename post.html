@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Boilerplate. Nothing in here is memo-specific and nothing needs editing:
-     the page is built by /post.js from the folder name and index.md. -->
+<!-- The page every memo is rendered into. One file for all of them.
+     vercel.json points /posts/<slug> here; post.js reads the slug back out
+     of the URL and renders posts/<slug>.md. Nothing here is memo-specific. -->
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
