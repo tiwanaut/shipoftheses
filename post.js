@@ -1,22 +1,25 @@
 /* ============================================================
    Builds a memo page.
 
-   Memos are flat Markdown files: posts/<slug>.md. vercel.json points
-   /posts/<slug> at post.html, and this works the slug back out of the
-   URL. Everything on the page — masthead, meta row, player, prose,
-   rail, footer — is built here, so the site chrome is one edit rather
-   than one per memo.
+   Each memo is a folder — posts/<slug>/ — holding index.md (the memo)
+   and an index.html stub. The stub is boilerplate and never needs
+   editing: everything you see on the page is built here, so the
+   masthead, player and footer live in one file rather than one copy
+   per memo.
    ============================================================ */
 (function () {
   "use strict";
 
-  var SITE = "https://shipoftheses.vercel.app";
+  var SITE = "https://www.shipoftheses.com";
   var MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   var TALLY = "https://tally.so";
 
-  // /posts/oura and /posts/oura/ both mean "oura"
-  var slug = new URLSearchParams(window.location.search).get("slug") ||
-    window.location.pathname.replace(/\/$/, "").split("/").pop();
+  // /posts/oura, /posts/oura/ and /posts/oura/index.html all mean "oura"
+  var slug = window.location.pathname
+    .replace(/\/index\.html?$/, "")
+    .replace(/\/$/, "")
+    .split("/")
+    .pop();
   var post = POSTS.filter(function (p) { return p.slug === slug; })[0];
   var page = document.querySelector("[data-memo]");
 
@@ -49,7 +52,7 @@
   var bits = post.date.split("-");
   var when = MONTHS[Number(bits[1]) - 1] + " " + bits[0];
   var url = SITE + "/posts/" + post.slug;
-  var raw = "/posts/" + post.slug + ".md";
+  var raw = "/posts/" + post.slug + "/index.md";
 
   var skip = function (dir) {
     var arc = dir === "back" ? 'M12 5.4a6.8 6.8 0 1 1-6.8 6.8" /><path d="M12 2.4 8.7 5.4 12 8.4'
