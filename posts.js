@@ -13,6 +13,7 @@
    Then copy posts/template.md to posts/<slug>.md and write the memo.
    ===================================================================== */
 const POSTS = [
+  { no: 5, title: "Aircall",       slug: "aircall",        date: "2026-09" },
   { no: 4, title: "Oura",          slug: "oura",           date: "2026-08" },
   { no: 3, title: "Monzo",         slug: "monzo",          date: "2026-07" },
   { no: 2, title: "Sweetgreen",    slug: "sweetgreen",     date: "2026-06" },
