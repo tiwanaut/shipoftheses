@@ -1,5 +1,6 @@
-<!-- Copy this to posts/<slug>.md, then add one object to POSTS in posts.js
-     with the same slug. That is the whole publishing step.
+<!-- Copy the whole posts/_template/ folder to posts/<slug>/, then add one
+     object to POSTS in posts.js with the same slug. index.html in the folder
+     is boilerplate — leave it alone. Write the memo below.
 
      The title, date and memo number live in posts.js, not here.
      Save the recording as audio/<slug>.mp3 and the player finds it.
