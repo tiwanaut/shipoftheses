@@ -3,29 +3,27 @@
 ## Repo layout
 
     index.html        the home page — the list of memos
+    post.html         the page every memo is rendered into, one for all of them
     posts.js          THE POST LIST — the one file you edit to publish
     post.js           builds a memo page from its Markdown, and the section rail
     site.js           search, the audio player, the share button
     styles.css        all styling for the whole site
-    vercel.json       clean URLs
+    vercel.json       clean URLs, and the /posts/<slug> route
     vendor/           marked, the Markdown parser (MIT, vendored so the site
                       has no runtime dependency on anyone else's server)
     audio/            one recording per memo, named after the memo's slug
     posts/
-      _template/      copy this whole folder to start a memo
-      <slug>/
-        index.md      the memo — this is the only file you write
-        index.html    boilerplate, identical in every folder, never edited
+      template.md     copy this to write a new memo
+      <slug>.md       one Markdown file per memo, and nothing else
 
-One folder per memo, named for its URL: `posts/oura/` is served at
-`/posts/oura`. No routing rules, no build step — the folder *is* the route.
+`posts/` holds Markdown and nothing else. `vercel.json` points
+`/posts/<slug>` at `post.html`, which reads the slug back out of the URL and
+renders `posts/<slug>.md`.
 
 ## How to publish a memo
 
-1. Copy the `posts/_template/` folder to `posts/<slug>/` (lowercase, dashes
-   for spaces — e.g. `posts/acme-robotics/`) and write the memo in
-   `index.md`. Leave `index.html` alone; it is the same in every folder and
-   carries nothing memo-specific.
+1. Copy `posts/template.md` to `posts/<slug>.md` (lowercase, dashes for
+   spaces — e.g. `posts/acme-robotics.md`) and write the memo in Markdown.
 2. Open `posts.js` and add one object to the list:
 
        { no: 5, title: "Acme Robotics", slug: "acme-robotics", date: "2026-09" },
@@ -34,7 +32,7 @@ One folder per memo, named for its URL: `posts/oura/` is served at
    `date` is `YYYY-MM`. Order doesn't matter, the index sorts itself.
 3. Commit and push. Your host redeploys automatically.
 
-One folder and one line. The title, date and number live in `posts.js`; the
+One file and one line. The title, date and number live in `posts.js`; the
 Markdown file is the body only. Everything on the page — masthead, player,
 rail, footer — is built by `post.js`, so changing the site chrome is one
 edit, not one per memo.
@@ -83,10 +81,12 @@ only family on the site.
 
 ## URLs and the domain
 
-The site lives at **https://shipoftheses.vercel.app**. A memo is served
-straight out of its own folder — `posts/oura/index.html` at `/posts/oura` —
-so there are no rewrites or routing rules to keep in step. Every internal
-link is a root-absolute clean path.
+The site lives at **https://shipoftheses.vercel.app**. A memo is served at
+`/posts/<slug>`, which `vercel.json` rewrites to `post.html`. The rewrite is
+scoped to path segments with no dot in them (`[^/.]+`) so that
+`/posts/oura.md` still serves the Markdown rather than the shell — without
+that constraint every memo would render empty. Every internal link is a
+root-absolute clean path.
 
 The canonical link and `og:url` are set per memo from `posts.js`. If you move
 to a custom domain, the domain is written down in:
@@ -96,18 +96,18 @@ to a custom domain, the domain is written down in:
 ## Previewing locally
 
 Links are root-absolute and memos are fetched over HTTP, so opening the files
-directly (`file://`) will not work. Run any static server that serves
-directory indexes, from the repo folder:
+directly (`file://`) will not work. Run:
 
-    npx serve
+    npx vercel dev
 
-`/posts/oura` then resolves to `posts/oura/index.html` exactly as it does
-live, because that is ordinary static file serving rather than a rule.
+That reads `vercel.json`, so the `/posts/<slug>` route behaves exactly as it
+does live. Plain `npx serve` will show the index but not the memos, because
+it does not know the rewrite.
 
 ## Hosting notes
 
-- On **Vercel**: nothing to do. `vercel.json` only asks for clean URLs, and
-  the CDN serves HTTP Range requests, which is what lets the audio player
-  seek.
-- Anywhere else: any static host works, as long as it serves directory
-  indexes and Range requests. There is no routing configuration to port.
+- On **Vercel**: nothing to do. `vercel.json` handles the clean URLs and the
+  memo route, and the CDN serves HTTP Range requests, which is what lets the
+  audio player seek.
+- Anywhere else you would need the same rewrite from `/posts/<slug>` to
+  `post.html`, and Range support for the audio.
